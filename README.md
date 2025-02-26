@@ -56,4 +56,13 @@ The To-Do List API with User Authentication is a secure task management applicat
         "password": "your_password"
       }
     ```
-
+* POST /api/login/
+   * Request Body:
+     ```bash
+     {
+      "username": "your_username",
+      "password": "your_password"
+     }
+    ```
+    
+   * Response: 200 OK with a JWT token:  
