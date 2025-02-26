@@ -143,6 +143,8 @@ These schemas are used to store user and task information in MongoDB. Ensure you
 <img width="1440" alt="Image" src="https://github.com/user-attachments/assets/41c51dab-2828-454a-94e0-b69f6733f54d" />
 <img width="1440" alt="Image" src="https://github.com/user-attachments/assets/119626bd-1327-4622-a609-13039cd6291f" />
 <img width="1440" alt="Image" src="https://github.com/user-attachments/assets/c72ee51c-a0dc-42cf-b9fc-714f2f272422" />
+
+
 ## Project Structure
 
 **Backend**
