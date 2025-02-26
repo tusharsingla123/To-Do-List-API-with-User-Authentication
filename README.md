@@ -19,7 +19,7 @@ The To-Do List API with User Authentication is a secure task management applicat
 **Prerequisites**
 
 * Node.js
-* MongoDB
+* MongoDB(compass)
 
 **Installation**
 
@@ -73,7 +73,82 @@ The To-Do List API with User Authentication is a secure task management applicat
      }
      ```
 
-* post
+**Task Management (Authenticated APIs)**
+
+* POST /api/tasks/
+  * Request Body:
+    ```bash
+    {
+       "title": "Task title",
+       "description": "Task description",
+       "is_completed": false
+     }
+
+    ```
+
+  * Response: 201 Created with the task details.
+
+* GET /api/tasks/
+  * Query Parameters: is_completed (optional, to filter tasks)
+  * Response: 200 OK with an array of tasks.
+
+* PUT /api/tasks/:id
+  * Request Body:
+    ```bash
+    {
+       "title": "Updated title",
+       "description": "Updated description",
+       "is_completed": true
+     }
+
+    ```
+    
+  * Response: 200 OK with the updated task details.
+
+* DELETE /api/tasks/:id
+  * Response: 200 OK if the task is deleted successfully.
 
 
+## Database Schema
+
+* User Schema
+  ```bash
+  const mongoose = require("mongoose");
+  const taskSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  description: { type: String },
+  is_completed: { type: Boolean, default: false },
+  created_at: { type: Date, default: Date.now },
+  });
+  
+  module.exports = mongoose.model("Task", taskSchema);
+
+  ```
+
+* Task Schema
+  ```bash
+  const mongoose = require("mongoose");
+  const userSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  });
+
+  module.exports = mongoose.model("User", userSchema);
+
+  ```
+
+These schemas are used to store user and task information in MongoDB. Ensure you have created the database and added these schemas to your backend.
+
+## Project Structure
+
+**Backend**
+* Routes: Defined in Express for CRUD operations at endpoints like /tasks, /auth/register, and /auth/login.
+* Controllers: Handle business logic for each operation (e.g., adding, updating tasks, and authenticating users).
+* Authentication Middleware: Used to secure task management routes with JWT token validation.
+* Database: MongoDB stores user and task data, with Mongoose for schema modeling.
+* Validation & Error Handling: Includes checks for required fields, user authentication, and error responses for invalid operations.
+
+## Running Tests
+
+To test API endpoints or other functionality, use tools like Postman or ThunderClient.
      
